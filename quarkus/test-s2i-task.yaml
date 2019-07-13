@@ -15,8 +15,10 @@ spec:
         value: "false"
       - name: PATH_CONTEXT
         value: "customer/java/quarkus"
-  # outputs:
-  #   resources:
-  #     - name: image
-  #       resourceRef:
-  #         name: customer-openshift-image
+      - name: MAVEN_MIRROR_URL
+        value: 'http://nexus:8081/nexus/content/groups/public'
+  outputs:
+    resources:
+      - name: image
+        resourceRef:
+          name: customer-openshift-image
