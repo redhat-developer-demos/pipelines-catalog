@@ -1,0 +1,22 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: test-s2i-quarkus
+spec:
+  taskRef:
+    name: s2i-quarkus
+  inputs:
+    resources:
+      - name: source
+        resourceRef:
+          name: customer-git
+    params:
+      - name: TLSVERIFY
+        value: "false"
+      - name: PATH_CONTEXT
+        value: "customer/java/quarkus"
+  # outputs:
+  #   resources:
+  #     - name: image
+  #       resourceRef:
+  #         name: customer-openshift-image
