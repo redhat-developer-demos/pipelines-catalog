@@ -43,6 +43,13 @@ spec:
           mountPath: /gen-source
       securityContext:
         privileged: true
+      resources:
+        limits:
+          memory: 6Gi
+          cpu: 4
+        requests:
+          memory: 4Gi
+          cpu: 2
     - name: push
       image: quay.io/buildah/stable
       command: ['buildah', 'push', '--tls-verify=${inputs.params.TLSVERIFY}', '${inputs.params.DESTINATION_IMAGE_NAME}', 'docker://${inputs.params.DESTINATION_IMAGE_NAME}']
