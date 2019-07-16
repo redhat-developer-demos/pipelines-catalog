@@ -1,0 +1,21 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: kn-create-service
+spec:
+  inputs:
+    params:
+      - name: name
+        description: The Knative Service name
+    resources:
+      - name: image
+        type: image
+  steps:
+    - name: kn
+      image: quay.io/rhdevelopers/clients
+      command: ["kn"]
+      args:
+        - service 
+        - create 
+        - ${inputs.params.name}
+        - --image=${inputs.resources.image.url}

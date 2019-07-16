@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  generateName: test-kn-create-service-
+spec:
+  serviceAccount: 'pipeline'
+  taskRef:
+    name: kn-create-service
+  inputs:
+    resources:
+     - name : image
+       resourceRef:
+         name: greeter-image
+    params:
+      - name: name
+        value: "greeter"

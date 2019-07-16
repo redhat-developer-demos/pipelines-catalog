@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1alpha1
 kind: TaskRun
 metadata:
-  name: test-s2i-quarkus
+  generateName: test-s2i-quarkus-
 spec:
   taskRef:
     name: s2i-quarkus
