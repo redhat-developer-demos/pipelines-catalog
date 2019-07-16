@@ -1,6 +1,6 @@
 # Knative Tasks
 
-A set of Tekton pipelie tasks using [Knative Client](https://github.com/knative/client)
+A set of Tekton pipeline tasks using [Knative Client](https://github.com/knative/client)
 
 ```shell
 oc create -f pipeline-sa-roles.yaml -n <your-namespace>
