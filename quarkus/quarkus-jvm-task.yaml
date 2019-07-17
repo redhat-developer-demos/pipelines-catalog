@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1alpha1
 kind: Task
 metadata:
-  name: quarkus-native
+  name: quarkus-jvm
 spec:
   inputs:
     resources:
@@ -22,15 +22,15 @@ spec:
         default: 'https://repo1.maven.org/maven2'
       - name: dockerfilePath
         description: The native build docker file path relative to the contextDir
-        default: src/main/docker/Dockerfile.native
+        default: src/main/docker/Dockerfile.jvm
   outputs:
     resources:
       - name: image
         type: image
   steps:
-    - name: native-build
-      imagePullPolicy: Always
+    - name: jvm-build
       image: quay.io/rhdevelopers/quarkus-java-builder:graal-19.0.2
+      imagePullPolicy: Always
       env: 
         - name: MAVEN_MIRROR_URL
           value: "${inputs.params.mavenMirrorUrl}"
@@ -39,7 +39,7 @@ spec:
         - name: WORK_DIR
           value: /workspace/source/${inputs.params.contextDir}
         - name: MVN_CMD_ARGS
-          value: "-Pnative clean package -DskipTests"
+          value: "clean package -DskipTests"
       args: ["/usr/local/bin/maven-run.sh"]
       securityContext:
         privileged: true

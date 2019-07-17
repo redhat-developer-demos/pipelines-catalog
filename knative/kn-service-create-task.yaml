@@ -17,5 +17,7 @@ spec:
       args:
         - service 
         - create 
+        # create or update
+        - --force
         - ${inputs.params.name}
         - --image=${inputs.resources.image.url}
