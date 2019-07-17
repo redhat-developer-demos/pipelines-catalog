@@ -1,4 +1,4 @@
-# Knative Tasks
+# Knative Client Tasks
 
 A set of Tekton pipeline tasks using [Knative Client](https://github.com/knative/client)
 
