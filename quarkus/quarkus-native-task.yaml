@@ -30,7 +30,7 @@ spec:
   steps:
     - name: native-build
       imagePullPolicy: Always
-      image: quay.io/rhdevelopers/quarkus-java-builder:graal-19.0.2
+      image: quay.io/quarkus/ubi-quarkus-native-s2i:19.1.2
       env: 
         - name: MAVEN_MIRROR_URL
           value: "${inputs.params.mavenMirrorUrl}"
