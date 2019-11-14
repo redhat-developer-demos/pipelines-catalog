@@ -1,0 +1,29 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: mvn
+spec:
+  inputs:
+    params:
+      - name: GOALS
+        description: The Maven goals to run
+        type: array
+        default:
+        - "package"
+    resources:
+    - name: source
+      targetPath: /
+      type: git
+  steps:
+  - name: test
+    image: maven:3.6.2-slim
+    command:
+    - /usr/bin/mvn
+    args:
+      - "$(inputs.params.GOALS)"
+    volumeMounts:
+      - name: m2-repository
+        mountPath: /.m2
+  volumes:
+    - name: m2-repository
+      emptyDir: {}
