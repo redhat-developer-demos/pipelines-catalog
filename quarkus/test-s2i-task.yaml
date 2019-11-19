@@ -16,7 +16,7 @@ spec:
       - name: PATH_CONTEXT
         value: "customer/java/quarkus"
       - name: MAVEN_MIRROR_URL
-        value: 'http://nexus:8081/nexus/content/groups/public'
+        value: 'http://nexus3.labs:8081/nexus/content/groups/public'
   outputs:
     resources:
       - name: image
