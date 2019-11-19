@@ -16,9 +16,6 @@ spec:
         description: Verify the TLS on the registry endpoint (for push/pull to a non-TLS registry)
         default: "true"
         type: string
-      - name: DESTINATION_IMAGE_NAME
-        description: The destination image name that will be pushed to container registry
-        default: "${outputs.resources.image.url}"
       - name: MAVEN_ARGS_APPEND
         description: Additional Maven arguments
         default: ""
@@ -85,7 +82,7 @@ spec:
     - name: build
       image: quay.io/buildah/stable
       workingdir: /gen-source
-      command: ['buildah', 'bud', '--tls-verify=${inputs.params.TLSVERIFY}', '--layers','--build-arg=MAVEN_MIRROR_URL=${inputs.params.MAVEN_MIRROR_URL}', '-f', '/gen-source/Dockerfile.gen', '-t', '${inputs.params.DESTINATION_IMAGE_NAME}', '.']
+      command: ['buildah', 'bud', '--tls-verify=$(inputs.params.TLSVERIFY)', '--layers', '-f', '/gen-source/Dockerfile.gen', '-t', '$(outputs.resources.image.url)', '.']
       volumeMounts:
         - name: varlibcontainers
           mountPath: /var/lib/containers
@@ -102,7 +99,7 @@ spec:
           cpu: 2
     - name: push
       image: quay.io/buildah/stable
-      command: ['buildah', 'push', '--tls-verify=${inputs.params.TLSVERIFY}', '${inputs.params.DESTINATION_IMAGE_NAME}', 'docker://${inputs.params.DESTINATION_IMAGE_NAME}']
+      command: ['buildah', 'push', '--tls-verify=${inputs.params.TLSVERIFY}', '$(outputs.resources.image.url)', 'docker://$(outputs.resources.image.url)']
       volumeMounts:
         - name: varlibcontainers
           mountPath: /var/lib/containers
