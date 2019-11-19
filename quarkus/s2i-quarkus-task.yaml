@@ -17,6 +17,13 @@ spec:
       - name: DESTINATION_IMAGE_NAME
         description: The destination image name that will be pushed to container registry
         default: "${outputs.resources.image.url}"
+      - name: MAVEN_ARGS_APPEND
+        description: Additional Maven arguments
+        default: ""
+        type: string
+      - name: MAVEN_CLEAR_REPO
+        description: Remove the Maven repository after the artifact is built
+        default: "false"  
       - name: MAVEN_MIRROR_URL
         description: The Maven Mirror to use
         default: 'https://repo1.maven.org/maven2'
