@@ -19,7 +19,7 @@ spec:
       type: git
   steps:
   - name: test
-    image: maven:3.6.2-slim
+    image: quay.io/rhdevelopers/tutorial-tools:0.0.3
     command:
     - /usr/bin/mvn
     args:
