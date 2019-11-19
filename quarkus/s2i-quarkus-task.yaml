@@ -22,7 +22,7 @@ spec:
         default: 'https://repo1.maven.org/maven2'
       - name: s2iImage
         description: The s2i image to be used as builder image 
-        default: 'quay.io/quarkus/ubi-quarkus-native-s2i:19.1.2'
+        default: 'quay.io/quarkus/ubi-quarkus-native-s2i:19.2.1'
   outputs:
     resources:
       - name: image
