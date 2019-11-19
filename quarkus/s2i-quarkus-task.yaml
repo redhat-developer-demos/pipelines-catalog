@@ -36,29 +36,6 @@ spec:
       - name: image
         type: image
   steps:
-    - name: gen-env-file
-      image: quay.io/openshift-pipeline/s2i
-      workingdir: /env-params
-      command:
-        - '/bin/sh'
-        - '-c'
-      args:
-        - |-
-          echo "MAVEN_CLEAR_REPO=$(inputs.params.MAVEN_CLEAR_REPO)" > env-file
-
-          [[ '$(inputs.params.MAVEN_ARGS_APPEND)' != "" ]] &&
-            echo "MAVEN_ARGS_APPEND=$(inputs.params.MAVEN_ARGS_APPEND)" >> env-file
-
-          [[ '$(inputs.params.MAVEN_MIRROR_URL)' != "" ]] &&
-            echo "MAVEN_MIRROR_URL=$(inputs.params.MAVEN_MIRROR_URL)" >> env-file
-
-          echo "Generated Env file"
-          echo "------------------------------"
-          cat env-file
-          echo "------------------------------"
-      volumeMounts:
-        - name: envparams
-          mountPath: /env-params
     - name: generate
       image: quay.io/openshift-pipeline/s2i
       workingdir: /workspace/source
