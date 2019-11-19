@@ -78,3 +78,5 @@ spec:
       emptyDir: {}
     - name: gen-source
       emptyDir: {}
+    - name: envparams
+      emptyDir: {}
