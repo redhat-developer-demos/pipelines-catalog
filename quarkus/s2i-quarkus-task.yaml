@@ -24,6 +24,7 @@ spec:
       - name: MAVEN_CLEAR_REPO
         description: Remove the Maven repository after the artifact is built
         default: "false"  
+        type: string
       - name: MAVEN_MIRROR_URL
         description: The Maven Mirror to use
         default: 'https://repo1.maven.org/maven2'
@@ -35,7 +36,7 @@ spec:
       - name: image
         type: image
   steps:
-      - name: gen-env-file
+    - name: gen-env-file
       image: quay.io/openshift-pipeline/s2i
       workingdir: /env-params
       command:
