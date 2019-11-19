@@ -11,9 +11,11 @@ spec:
       - name: PATH_CONTEXT
         description: The location of the path to run s2i from.
         default: .
+        type: string
       - name: TLSVERIFY
         description: Verify the TLS on the registry endpoint (for push/pull to a non-TLS registry)
         default: "true"
+        type: string
       - name: DESTINATION_IMAGE_NAME
         description: The destination image name that will be pushed to container registry
         default: "${outputs.resources.image.url}"
@@ -28,9 +30,11 @@ spec:
       - name: MAVEN_MIRROR_URL
         description: The Maven Mirror to use
         default: 'https://repo1.maven.org/maven2'
+        type: string
       - name: s2iImage
         description: The s2i image to be used as builder image 
         default: 'quay.io/quarkus/ubi-quarkus-native-s2i:19.2.1'
+        type: string
   outputs:
     resources:
       - name: image
