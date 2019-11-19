@@ -10,6 +10,9 @@ spec:
         type: array
         default:
         - "package"
+      - name: MAVEN_MIRROR_URL
+        description: The Maven Mirror to use
+        default: 'https://repo1.maven.org/maven2' 
     resources:
     - name: source
       targetPath: /
@@ -24,6 +27,9 @@ spec:
     volumeMounts:
       - name: m2-repository
         mountPath: /.m2
+    env:
+     - name: MAVEN_MIRROR_URL
+       value: "$(inputs.params.MAVEN_MIRROR_URL)"
   volumes:
     - name: m2-repository
       emptyDir: {}
